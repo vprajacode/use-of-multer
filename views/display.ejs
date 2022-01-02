@@ -1,0 +1,51 @@
+<%- include('layout/header')%>
+<div class="container">
+    <div class="row"  align="center">
+        <div class="col-lg-12">
+            <%if(message){%>
+             
+            <div class='alert alert-dismissible fade show alert=<%=message.type%>'
+                role="alert">
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+                <strong><%=message.message%></strong></div>
+                <%}%>
+            
+            <% if(users!='') {%>
+                <table border="1" >
+                   <thead>
+                    <tr>
+                        <td>sr no.</td>
+                        <td>Name</td>
+                        <td>email</td>
+                        <td>phone</td>
+                        <td>image</td>
+                        <td>Actions</td>
+                    </tr>
+                   </thead>
+                   <tbody>
+                       <% users.forEach((row,index)=>{%>
+                        <tr>
+                            <td><%= index+1 %></td>
+                            <td><%=row.name %></td>
+                            <td><%=row.email%></td>
+                            <td><%=row.phone %></td>
+                            <td><img src="<%= row.image%>"  width="50" class="img-thumbnail"alt=""></td>
+                            
+                            <td><a href="/edit/<%=row._id%>">edit</a>  <a href="/delete/<%=row._id%>">delete</a></td>
+                        </tr>
+                        <%})%>
+                   </tbody> 
+                   
+                   
+                </table>
+                <%} else{%>
+                    <h1>no users found</h1>
+                 <%}%>
+           
+           
+        </div>
+    </div>
+</div>
+
+
+<%- include('layout/footer')%>
